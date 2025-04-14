@@ -4,7 +4,7 @@ import samNeisewanderHeadshot from './assets/headshot.webp';
 
 function App() {
   return (
-    <div className='bg-stone-100 dark:bg-stone-950 w-lvw min-h-lvh h-fit flex flex-col items-center'>
+    <div className='bg-stone-100 dark:bg-stone-950 min-w-screen min-h-screen h-fit flex flex-col items-center'>
       <div className='min-w-2xl w-1/2 h-full p-5 flex flex-col rounded-lg'>
         <div className='h-30'></div>
         <ContactCard headshot={samNeisewanderHeadshot}></ContactCard>
