@@ -134,6 +134,7 @@ export const tailwindThemeFromColor = (
 		const { light, dark } = customColor(source, {
 			value: argbFromHex(hex),
 			blend,
+			name: ''
 		})
 		const kebabName = kebabize(colorName)
 
