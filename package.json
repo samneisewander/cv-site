@@ -29,6 +29,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
+    "@types/color": "^4.2.0",
     "@types/react": "^19.0.10",
     "@types/react-color": "^3.0.13",
     "@types/react-dom": "^19.0.4",

@@ -1,10 +1,10 @@
-import { tailwindThemeFromColor } from "./tailwindThemeFromColor";
+import { tailwindThemeFromColor } from './tailwindThemeFromColor';
 import Color from "color";
 
 const DYNAMIC_THEME_STYLESHEET_ID = "tailwind-material-colors-dynamic-theme";
 
 export const updateTheme = (
-  colorsMap,
+  colorsMap: any,
   darkModeConfig = "media",
   scheme = "content",
   contrast = 0

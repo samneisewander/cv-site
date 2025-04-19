@@ -16,7 +16,6 @@ import { useState, useEffect } from 'react'
 import { updateTheme } from './utils/updateTheme'
 import M3IconButton from './components/M3IconButton'
 import BuiTooltip from './components/Tooltip'
-import { HashLink } from 'react-router-hash-link'
 import HeaderLink from './components/HeaderLink'
 
 export default function App() {

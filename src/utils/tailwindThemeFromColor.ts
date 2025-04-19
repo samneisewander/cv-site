@@ -12,7 +12,7 @@ import {
     SchemeTonalSpot,
     SchemeVibrant,
   } from "@material/material-color-utilities";
-  import { kebabize } from "./kebabize";
+  import { kebabize } from './kebabize'
   
   const AllMaterialDynamicColors = {
     background: MaterialDynamicColors.background,
@@ -81,12 +81,12 @@ import {
    *
    * @param {Record<string, string>} colorsMap Values must be hex colors and 'primary' must be present.
    */
-  export const tailwindThemeFromColor = (colorsMap, scheme, contrast) => {
+  export const tailwindThemeFromColor = (colorsMap: any, scheme: any, contrast: any) => {
     const { primary, ...extraColors } = colorsMap;
   
     const source = argbFromHex(primary);
   
-    const SchemeObjects = {
+    const SchemeObjects: LooseObject = {
       content: SchemeContent,
       expressive: SchemeExpressive,
       fidelity: SchemeFidelity,
@@ -99,16 +99,21 @@ import {
   
     const lightScheme = new SchemeObject(Hct.fromInt(source), false, contrast);
     const darkScheme = new SchemeObject(Hct.fromInt(source), true, contrast);
-  
+
+    interface LooseObject {
+      [key: string]: any
+    }
+
     // default colors
-    const colors = {
+    const colors: LooseObject = {
       transparent: "transparent",
       current: "currentColor",
       black: "#000000",
       white: "#ffffff",
     };
+
   
-    Object.entries(AllMaterialDynamicColors).forEach(([name, DynamicColor]) => {
+    Object.entries(AllMaterialDynamicColors).forEach(([name, DynamicColor]: [string, any]) => {
       const lightHex = hexFromArgb(DynamicColor.getArgb(lightScheme));
       const darkHex = hexFromArgb(DynamicColor.getArgb(darkScheme));
       colors[`${name}-light`] = lightHex;
