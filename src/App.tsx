@@ -107,46 +107,125 @@ export default function App() {
 							</p>
 						}
 					/>
-=======
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLinkedin, faInstagram, faSpotify } from '@fortawesome/free-brands-svg-icons'
-import samNeisewanderHeadshot from './assets/headshot.webp';
 
-function App() {
-  return (
-    <div className='bg-stone-100 dark:bg-stone-950 w-lvw min-h-lvh h-fit flex flex-col items-center'>
-      <div className='min-w-2xl w-1/2 h-full p-5 flex flex-col rounded-lg'>
-        <div className='h-30'></div>
-        <ContactCard headshot={samNeisewanderHeadshot}></ContactCard>
-        {/* <h1 className='text-stone-800 dark:text-stone-300'>Heading 1</h1>
-        <h2 className='text-stone-800 dark:text-stone-300'>Heading 2</h2>
-        <h3 className='text-stone-800 dark:text-stone-300'>Heading 3</h3>
-        <h4 className='text-stone-800 dark:text-stone-300'>Heading 4</h4>
-        <p className='text-stone-800 dark:text-stone-300'>Paragraph</p> */}
-      </div>
-    </div>
-  )
-}
+					<p>
+						, majoring in Computer Science and minoring in Music.
+						Sam is from the small, rural town of{' '}
+					</p>
 
-function ContactCard({ headshot }: { headshot: string }){
-  return (
-    <>
-      <div className="flex flex-col gap-3 items-center">
-        <img src={headshot} className="size-40 rounded-4xl" alt="Headshot of Sam Neisewander" />
-        <h3 className='text-stone-800 dark:text-stone-300'>Sam Neisewander</h3>
-        <div className='flex flex-row gap-3'>
-          <a href="https://www.linkedin.com/in/samuelneisewander" target="_blank">
-            <FontAwesomeIcon icon={faLinkedin} className='text-2xl text-stone-800 dark:text-stone-100'></FontAwesomeIcon>
-          </a>
-          <a href="https://www.instagram.com/samneisewander" target="_blank">
-            <FontAwesomeIcon icon={faInstagram} className='text-2xl text-stone-800 dark:text-stone-100'></FontAwesomeIcon>
-          </a>
-          <a href="" target="_blank">
-            <FontAwesomeIcon icon={faSpotify} className='text-2xl text-stone-800 dark:text-stone-100'></FontAwesomeIcon>
-          </a>
+					<BuiPreviewCard
+						link='https://en.wikipedia.org/wiki/Dixon,_Illinois#'
+						text='Dixon, IL'
+						imgSrc={dixon}
+						imgAltTxt={
+							"Dixon's signature white arch which sits over Route 52."
+						}
+						description={
+							<p>
+								<strong>Dixon</strong> is a city in Lee County,
+								Illinois. The population was 15,274 as of the
+								2020 census. The city is named after founder
+								John Dixon, who operated a rope ferry service
+								across the Rock River, which runs through the
+								city. The Illinois General Assembly designated
+								Dixon as "Petunia Capital of Illinois" in 1999.
+								Dixon was the boyhood home of former U.S.
+								President Ronald Reagan. The city is also the
+								site of the Lincoln Monument State Memorial,
+								marking the spot where Abraham Lincoln joined
+								the Illinois militia at Fort Dixon in 1832
+								during the Black Hawk War.
+							</p>
+						}
+					/>
 
-        </div>
-      </div>
-    </>
-  )
+					<p>
+						. On campus, Sam is a resident of Sorin College, where
+						he helps operate the grilling team and plays guitar for
+						Sorin's chapel Mass. Sam is an officer of The Melodies
+						of Notre Dame, a SATB a cappella group that peforms
+						concerts each semester on campus and at various nursing
+						homes as a form of community outreach.
+					</p>
+
+					<br />
+					<br />
+
+					<p>
+						In his free time, Sam enjoys tinkering with computers,
+						working on software projects, reading, producing music,
+						and running.
+					</p>
+
+					<h1>Classes</h1>
+
+					<h2>Freshman</h2>
+					<h3>Fall</h3>
+					<ul>
+						<li>Calculus I</li>
+						<li>Introduction to Chemical Principles</li>
+						<li>Engineering Design</li>
+						<li>Moreau First Year Experience</li>
+						<li>Theory I: Materials & Techniques of Music</li>
+						<li>How Did I Get Here & Where Am I Going?</li>
+					</ul>
+					<h3>Spring</h3>
+					<ul>
+						<li>Calculus II</li>
+						<li>Engineering Physics I: Mechanics</li>
+						<li>Engineering Programming</li>
+						<li>Moreau First Year Experience</li>
+						<li>Theory II: Materials & Techniques of Music</li>
+						<li>Foundations of Theology</li>
+					</ul>
+
+					<h2>Sophomore</h2>
+					<h3>Fall</h3>
+					<ul>
+						<li>Calculus III</li>
+						<li>Engineering Physics II: E&M</li>
+						<li>Fundamentals of Computing</li>
+						<li>Discrete Mathematics</li>
+						<li>Aquinas, Faith, & Wisdom</li>
+					</ul>
+					<h3>Spring</h3>
+					<ul>
+						<li>
+							Intro to Linear Algebra & Differential Equations
+						</li>
+						<li>Data Structures</li>
+						<li>Systems Programming</li>
+						<li>Logic Design</li>
+						<li>Music Histories & Cultures II</li>
+					</ul>
+
+					{/* <h2>Junior</h2>
+					<h3>Fall</h3>
+					<h3>Spring</h3>
+
+					<h2>Senior</h2>
+					<h3>Fall</h3>
+					<h3>Spring</h3> */}
+				</div>
+
+				<div className='h-screen w-fit flex flex-col justify-center col-start-3 top-0 ml-10'>
+					<div
+						itemID='island'
+						className='bg-surface-container fixed h-fit rounded-full flex flex-col p-2 items-center justify-center gap-3'>
+						<BuiTooltip color='on-surface-container' background='surface-container' text='Themes' side='left' offset={20}>
+							<PopOver icon={faPalette}>
+								<SketchPicker className='bg-surface-container font-[Poppins]' disableAlpha={true} onChangeComplete={handleChangeComplete} color={color}></SketchPicker>
+							</PopOver>
+						</BuiTooltip>
+						<BuiTooltip color='on-surface-container' background='surface-container' text='Toggle dark mode' side='left' offset={20}>
+							<M3IconButton clickHandler={handleDarkModeToggle} icon={darkMode ? faSun : faMoon}></M3IconButton>
+						</BuiTooltip>
+						<BuiTooltip color='on-surface-container' background='surface-container' text='Toggle contrast level' side='left' offset={20}>
+							<M3IconButton clickHandler={handleContrastToggle} icon={faCircleHalfStroke}></M3IconButton>
+						</BuiTooltip>
+					</div>
+				</div>
+			</div>
+		</div>
+	)
 }
