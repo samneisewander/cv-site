@@ -81,6 +81,9 @@ export default function App() {
 						]}
 						email="samuelneisewander@gmail.com"
 					/>
+
+					<iframe className="w-full h-[152px] m-0" src="https://open.spotify.com/embed/album/4zR8tf05wmQnG48qgPLhRS?utm_source=generator" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
 					<HeaderLink text='About' id='about'/>
 					<p>Sam Neisewander is a sophomore student at the </p>
 

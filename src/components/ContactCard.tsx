@@ -20,7 +20,7 @@ export default function ContactCard({
 }) {
 	return (
 		<>
-			<div className='flex flex-col gap-3 items-center justify-center w-full h-[75vh]'>
+			<div className='flex flex-col gap-3 items-center justify-center w-full h-fit mt-10 mb-10'>
 				<img
 					src={headshot}
 					className='size-40 rounded-full'
