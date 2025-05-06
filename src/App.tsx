@@ -75,10 +75,11 @@ export default function App() {
 							{
 								icon: faSpotify,
 								text: 'Listen to my work on Spotify!',
-								link: '',
+								link: 'https://open.spotify.com/artist/5rTV8krDOMdxZtbZqqNfGm?si=mXq2dorFSkqnaTWkN6rwhg',
 								key: 3,
 							},
 						]}
+						email="samuelneisewander@gmail.com"
 					/>
 					<HeaderLink text='About' id='about'/>
 					<p>Sam Neisewander is a sophomore student at the </p>

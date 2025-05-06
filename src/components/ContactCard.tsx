@@ -12,9 +12,11 @@ type Social = {
 export default function ContactCard({
 	headshot,
 	socials,
+	email=null,
 }: {
 	headshot: string
 	socials: Social[]
+	email?: string | null,
 }) {
 	return (
 		<>
@@ -24,9 +26,15 @@ export default function ContactCard({
 					className='size-40 rounded-full'
 					alt='Headshot of Sam Neisewander'
 				/>
-				<h3 className='text-on-surface'>
+				<h1 className='text-on-surface m-0'>
 					Sam Neisewander
-				</h3>
+				</h1>
+				{ email ? 
+					<div className='text-sm font-[Poppins]'>
+						<a href={`mailto:${email}`}>{email}</a>
+					</div> 
+					: ''
+				}
 				<div className='flex flex-row gap-3'>
 					{/* ICON BUTTONS */}
                     {socials.map(social => (
