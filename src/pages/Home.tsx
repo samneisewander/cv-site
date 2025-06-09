@@ -1,6 +1,6 @@
-import samNeisewanderHeadshot from './assets/headshot.webp'
-import notreDame from './assets/notre-dame.webp'
-import dixon from './assets/dixon.webp'
+import samNeisewanderHeadshot from '../assets/headshot.webp'
+import notreDame from '../assets/notre-dame.webp'
+import dixon from '../assets/dixon.webp'
 
 import ContactCard from '../components/ContactCard'
 import {
@@ -18,7 +18,7 @@ import M3IconButton from '../components/M3IconButton'
 import BuiTooltip from '../components/Tooltip'
 import HeaderLink from '../components/HeaderLink'
 
-export default function App() {
+export default function Home() {
 	const [color, setColor] = useState('#FF0000');
 	const [contrast, setContrast] = useState(0);
 	const [darkMode, setDarkMode] = useState(window.matchMedia("(prefers-color-scheme: dark)").matches);
