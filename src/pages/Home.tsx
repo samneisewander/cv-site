@@ -87,6 +87,9 @@ export default function Home() {
 							},
 						]}
 					/>
+
+					<iframe className='h-40' src="https://open.spotify.com/embed/track/2RZATnVze9rZm82lZX4TLi?utm_source=generator" width="100%" height="352" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
 					<HeaderLink text='About' id='about' />
 					<p>Sam Neisewander is a sophomore student at the </p>
 
