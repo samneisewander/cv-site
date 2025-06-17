@@ -13,7 +13,6 @@ import {
 	faMoon,
 	faSun,
 	faCircleHalfStroke,
-	faPlus,
 } from '@fortawesome/free-solid-svg-icons'
 import BuiPreviewCard from '../components/PreviewCard'
 import PopOver from '../components/PopOver'

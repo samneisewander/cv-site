@@ -3,15 +3,15 @@ import React from 'react'
 import { M3ColorRole } from '../../utils/M3Types'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { IconDefinition } from '@fortawesome/free-brands-svg-icons'
-import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
 export default function BUI_Accordion({
     children,
     header,
-    iconWhenOpen = faMinus,
+    // iconWhenOpen = faMinus,
     iconWhenClosed = faPlus,
-    background = 'surface-container',
-    color = 'on-surface',
+    //background = 'surface-container',
+    //color = 'on-surface',
 }: {
     children: React.ReactNode,
     header: React.ReactNode,
