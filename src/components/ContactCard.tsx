@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { IconDefinition } from '@fortawesome/free-brands-svg-icons'
-import BuiTooltip from './Tooltip'
+import BuiTooltip from './BaseUI/BUI_Tooltip'
 
 type Social = {
     icon: IconDefinition,
@@ -38,7 +38,7 @@ export default function ContactCard({
 				<div className='flex flex-row gap-3'>
 					{/* ICON BUTTONS */}
                     {socials.map(social => (
-                        <BuiTooltip key={social.key} text={social.text} color='on-surface-container' background='surface-container'>
+                        <BuiTooltip key={social.key} text={social.text} color='on-surface' background='surface-container'>
                             <a href={social.link} target='_blank'>
                                 <FontAwesomeIcon
                                     icon={social.icon}

@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHashtag, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { useState } from 'react'
-import BuiTooltip from "./Tooltip";
+import BuiTooltip from "./BaseUI/BUI_Tooltip";
 
 export default function HeaderLink({ text, id }: { text: string, id: string }) {
 

@@ -1,18 +1,18 @@
-import * as React from 'react'
 import { Tooltip } from '@base-ui-components/react/tooltip'
+import { M3ColorRole } from '../../utils/M3Types'
 
 export default function BuiTooltip({
 	children,
 	text,
     background = 'surface-container',
-    color = 'on-surface-container',
+    color = 'on-surface',
 	side = 'bottom',
 	offset = 10
 }: {
 	children: React.ReactNode,
 	text: string,
-    background?: string,
-    color?: string,
+    background?: M3ColorRole,
+    color?: M3ColorRole,
 	side?: 'top' | 'bottom' | 'left' | 'right',
 	offset?: number
 }) {
