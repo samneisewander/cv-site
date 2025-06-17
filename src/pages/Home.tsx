@@ -30,7 +30,6 @@ export default function Home() {
 
 	const handleDarkModeToggle = () => {
 		setDarkMode(!darkMode)
-		console.log(darkMode)
 	}
 
 	const handleContrastToggle = () => {
