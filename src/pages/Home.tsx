@@ -29,37 +29,37 @@ import { HexColorPicker } from 'react-colorful'
 
 // Import Functions
 import { useState, useEffect } from 'react'
-import { updateTheme, type SchemeStringType } from 'm3-palettes'
+import { updateTheme } from 'm3-palettes'
 
 export default function Home() {
 	/* MATERIAL 3 COLOR */
     const [color, setColor] = useState('#32a852')
     const [contrast, setContrast] = useState(0)
-    const [scheme, setScheme]: [SchemeStringType, (...args: any[]) => void] = useState('content')
+    //const [scheme, setScheme]: [SchemeStringType, (...args: any[]) => void] = useState('content')
     const [darkMode, setDarkMode] = useState(
         window.matchMedia('(prefers-color-scheme: dark)').matches
     )
-    const handleToggleGroupChange = (groupValue: any[]) => {
-        if (!groupValue[0]) return
-        const scheme = groupValue[0] as SchemeStringType
-        setScheme(scheme)
-        updateTheme(color, scheme, darkMode, contrast)
-    }
+    // const handleToggleGroupChange = (groupValue: any[]) => {
+    //     if (!groupValue[0]) return
+    //     const scheme = groupValue[0] as SchemeStringType
+    //     setScheme(scheme)
+    //     updateTheme(color, scheme, darkMode, contrast)
+    // }
     const handleChangeComplete = (newColor: string) => {
         setColor(newColor)
-        updateTheme(newColor, scheme, darkMode, contrast)
+        updateTheme(newColor, 'content', darkMode, contrast)
     }
     const handleDarkModeToggle = () => {
         setDarkMode(!darkMode)
-        updateTheme(color, scheme, !darkMode, contrast)
+        updateTheme(color, 'content', !darkMode, contrast)
     }
     const handleContrastToggle = (value: number) => {
         setContrast(value)
-        updateTheme(color, scheme, darkMode, contrast)
+        updateTheme(color, 'content', darkMode, contrast)
     }
     // Initialize theme on page load
     useEffect(() => {
-        updateTheme(color, scheme, darkMode, contrast)
+        updateTheme(color, 'content', darkMode, contrast)
     }, [])
 
 	return (
