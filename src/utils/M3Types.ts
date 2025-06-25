@@ -18,8 +18,6 @@ export type M3ColorRole =
     'on-error-container'|
     'background'|
     'on-background'|
-    'surface'|
-    'on-surface'|
     'surface-variant'|
     'on-surface-variant'|
     'outline'|
@@ -41,6 +39,8 @@ export type M3ColorRole =
     'on-tertiary-fixed'|
     'tertiary-fixed-dim'|
     'on-tertiary-fixed-variant'|
+    'surface'|
+    'on-surface'|
     'surface-dim'|
     'surface-bright'|
     'surface-container-lowest'|
@@ -48,4 +48,3 @@ export type M3ColorRole =
     'surface-container'|
     'surface-container-high'|
     'surface-container-highest'
-

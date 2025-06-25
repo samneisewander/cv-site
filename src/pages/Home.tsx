@@ -15,7 +15,7 @@ import {
 	faCircleHalfStroke,
 } from '@fortawesome/free-solid-svg-icons'
 import BuiPreviewCard from '../components/PreviewCard'
-import PopOver from '../components/PopOver'
+import BuiPopover from '../components/BaseUI/BUI_Popover'
 import { SketchPicker, ColorResult } from 'react-color'
 import { useState, useEffect } from 'react'
 import { updateTheme } from '../utils/updateTheme'
@@ -23,6 +23,7 @@ import M3IconButton from '../components/M3IconButton'
 import BuiTooltip from '../components/BaseUI/BUI_Tooltip'
 import HeaderLink from '../components/HeaderLink'
 import BUI_Accordion from '../components/BaseUI/BUI_Accordion'
+
 
 export default function Home() {
 	const [color, setColor] = useState('#FF0000')
@@ -276,14 +277,14 @@ function Island({
 					text='Themes'
 					side='left'
 					offset={20}>
-					<PopOver icon={faPalette}>
+					<BuiPopover icon={faPalette}>
 						<SketchPicker
 							className='bg-surface-container font-[Poppins]'
 							disableAlpha={true}
 							onChangeComplete={handleChangeComplete}
 							color={color}>
 						</SketchPicker>
-					</PopOver>
+					</BuiPopover>
 				</BuiTooltip>
 				<BuiTooltip
 					color='on-surface'

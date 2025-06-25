@@ -1,9 +1,9 @@
-import M3IconButton from "./M3IconButton"
+import M3IconButton from "../M3IconButton"
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core"
 import { Popover } from '@base-ui-components/react'
 import { ReactNode } from "react"
 
-export default function PopOver({children, icon}: {children: ReactNode, icon: IconDefinition}){
+export default function BuiPopver({children, icon}: {children: ReactNode, icon: IconDefinition}){
     return (
         <Popover.Root>
       <Popover.Trigger>
