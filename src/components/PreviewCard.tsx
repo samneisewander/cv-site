@@ -41,7 +41,7 @@ export default function BuiPreviewCard({
 				<PreviewCard.Positioner
 					ref={refs.setFloating}
 					style={floatingStyles}>
-					<PreviewCard.Popup className='flex flex-col gap-2 p-1 rounded-md h-fit max-w-80 bg-surface-container origin-[var(--transform-origin)] transition-[transform,scale,opacity] data-[ending-style]:scale-90 data-[ending-style]:opacity-0 data-[starting-style]:scale-90 data-[starting-style]:opacity-0'>
+					<PreviewCard.Popup className='flex flex-col gap-2 p-1 rounded-md h-fit max-w-80 bg-primary text-on-primary origin-[var(--transform-origin)] transition-[transform,scale,opacity] data-[ending-style]:scale-90 data-[ending-style]:opacity-0 data-[starting-style]:scale-90 data-[starting-style]:opacity-0'>
 						<img
 							width='448'
 							height='300'

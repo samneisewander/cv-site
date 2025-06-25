@@ -1,8 +1,9 @@
+// Import Images
 import samNeisewanderHeadshot from '../assets/headshot.webp'
 import notreDame from '../assets/notre-dame.webp'
 import dixon from '../assets/dixon.webp'
 
-import ContactCard from '../components/ContactCard'
+// Import Icons
 import {
 	faLinkedin,
 	faInstagram,
@@ -14,55 +15,56 @@ import {
 	faSun,
 	faCircleHalfStroke,
 } from '@fortawesome/free-solid-svg-icons'
+
+// Import Components
+import ContactCard from '../components/ContactCard'
 import BuiPreviewCard from '../components/PreviewCard'
 import BuiPopover from '../components/BaseUI/BUI_Popover'
-import { SketchPicker, ColorResult } from 'react-color'
-import { useState, useEffect } from 'react'
-import { updateTheme } from '../utils/updateTheme'
+
 import M3IconButton from '../components/M3IconButton'
 import BuiTooltip from '../components/BaseUI/BUI_Tooltip'
 import HeaderLink from '../components/HeaderLink'
 import BUI_Accordion from '../components/BaseUI/BUI_Accordion'
+import { HexColorPicker } from 'react-colorful'
 
+// Import Functions
+import { useState, useEffect } from 'react'
+import { updateTheme, type SchemeStringType } from 'm3-palettes'
 
 export default function Home() {
-	const [color, setColor] = useState('#FF0000')
-	const [contrast, setContrast] = useState(0)
-	const [darkMode, setDarkMode] = useState(
-		window.matchMedia('(prefers-color-scheme: dark)').matches
-	)
-
-	const handleChangeComplete = (newColor: ColorResult) => {
-		setColor(newColor.hex)
-		updateTheme({ primary: newColor.hex }, 'class', 'content', contrast)
-	}
-
-	const handleDarkModeToggle = () => {
-		setDarkMode(!darkMode)
-	}
-
-	const handleContrastToggle = () => {
-		let newContrast = contrast + 0.5
-		if (newContrast > 1.0) {
-			newContrast = -1
-		}
-		setContrast(newContrast)
-		updateTheme({ primary: color }, 'class', 'content', contrast)
-	}
-
-	useEffect(() => {
-		updateTheme({ primary: '#D0021B' }, 'class', 'content', 0)
-	}, [])
+	/* MATERIAL 3 COLOR */
+    const [color, setColor] = useState('#32a852')
+    const [contrast, setContrast] = useState(0)
+    const [scheme, setScheme]: [SchemeStringType, (...args: any[]) => void] = useState('content')
+    const [darkMode, setDarkMode] = useState(
+        window.matchMedia('(prefers-color-scheme: dark)').matches
+    )
+    const handleToggleGroupChange = (groupValue: any[]) => {
+        if (!groupValue[0]) return
+        const scheme = groupValue[0] as SchemeStringType
+        setScheme(scheme)
+        updateTheme(color, scheme, darkMode, contrast)
+    }
+    const handleChangeComplete = (newColor: string) => {
+        setColor(newColor)
+        updateTheme(newColor, scheme, darkMode, contrast)
+    }
+    const handleDarkModeToggle = () => {
+        setDarkMode(!darkMode)
+        updateTheme(color, scheme, !darkMode, contrast)
+    }
+    const handleContrastToggle = (value: number) => {
+        setContrast(value)
+        updateTheme(color, scheme, darkMode, contrast)
+    }
+    // Initialize theme on page load
+    useEffect(() => {
+        updateTheme(color, scheme, darkMode, contrast)
+    }, [])
 
 	return (
 		<div className={darkMode ? 'dark' : 'light'}>
-			<div className='bg-surface w-screen grid grid-cols-[1fr_500px_1fr]'>
-				{/* <div className='h-screen w-fit flex flex-col justify-center col-start-1 top-0 ml-10'>
-					<div itemID='chapters' className='w-[200px] h-[100px] bg-surface-container fixed rounded-md'>
-						<HashLink smooth to={'/#about'}>About</HashLink>
-					</div>
-				</div> */}
-
+			<div className='bg-surface text-on-surface w-screen grid grid-cols-[1fr_500px_1fr]'>
 				<div itemID='raceway' className='col-start-2'>
 					<ContactCard
 						headshot={samNeisewanderHeadshot}
@@ -278,12 +280,7 @@ function Island({
 					side='left'
 					offset={20}>
 					<BuiPopover icon={faPalette}>
-						<SketchPicker
-							className='bg-surface-container font-[Poppins]'
-							disableAlpha={true}
-							onChangeComplete={handleChangeComplete}
-							color={color}>
-						</SketchPicker>
+						<HexColorPicker onChange={handleChangeComplete} color={color} />
 					</BuiPopover>
 				</BuiTooltip>
 				<BuiTooltip

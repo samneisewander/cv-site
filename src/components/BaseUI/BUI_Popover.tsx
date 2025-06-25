@@ -6,7 +6,7 @@ import { ReactNode } from "react"
 export default function BuiPopver({children, icon}: {children: ReactNode, icon: IconDefinition}){
     return (
         <Popover.Root>
-      <Popover.Trigger>
+      <Popover.Trigger render={<div></div>}>
         <M3IconButton icon={icon}></M3IconButton>
       </Popover.Trigger>
       <Popover.Portal>

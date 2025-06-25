@@ -1,8 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Chonburi&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-@custom-variant dark (&:where(.dark, .dark *));
+@import "tailwindcss";
 
 @layer base {
 	body {
@@ -44,4 +41,56 @@
 		list-style-type: circle;
 		list-style-position: inside;
 	}
+}
+
+@theme {
+    --color-primary: rgb(144 74 68);
+    --color-surface-tint: rgb(144 74 68);
+    --color-on-primary: rgb(255 255 255);
+    --color-primary-container: rgb(255 218 214);
+    --color-on-primary-container: rgb(115 51 47);
+    --color-secondary: rgb(119 86 83);
+    --color-on-secondary: rgb(255 255 255);
+    --color-secondary-container: rgb(255 218 214);
+    --color-on-secondary-container: rgb(93 63 60);
+    --color-tertiary: rgb(114 91 46);
+    --color-on-tertiary: rgb(255 255 255);
+    --color-tertiary-container: rgb(254 222 166);
+    --color-on-tertiary-container: rgb(88 68 25);
+    --color-error: rgb(186 26 26);
+    --color-on-error: rgb(255 255 255);
+    --color-error-container: rgb(255 218 214);
+    --color-on-error-container: rgb(147 0 10);
+    --color-background: rgb(255 248 247);
+    --color-on-background: rgb(35 25 24);
+    --color-surface: rgb(255 248 247);
+    --color-on-surface: rgb(35 25 24);
+    --color-surface-variant: rgb(245 221 219);
+    --color-on-surface-variant: rgb(83 67 65);
+    --color-outline: rgb(133 115 113);
+    --color-outline-variant: rgb(216 194 191);
+    --color-shadow: rgb(0 0 0);
+    --color-scrim: rgb(0 0 0);
+    --color-inverse-surface: rgb(57 46 45);
+    --color-inverse-on-surface: rgb(255 237 235);
+    --color-inverse-primary: rgb(255 179 172);
+    --color-primary-fixed: rgb(255 218 214);
+    --color-on-primary-fixed: rgb(59 9 8);
+    --color-primary-fixed-dim: rgb(255 179 172);
+    --color-on-primary-fixed-variant: rgb(115 51 47);
+    --color-secondary-fixed: rgb(255 218 214);
+    --color-on-secondary-fixed: rgb(44 21 19);
+    --color-secondary-fixed-dim: rgb(231 189 184);
+    --color-on-secondary-fixed-variant: rgb(93 63 60);
+    --color-tertiary-fixed: rgb(254 222 166);
+    --color-on-tertiary-fixed: rgb(38 25 0);
+    --color-tertiary-fixed-dim: rgb(225 195 140);
+    --color-on-tertiary-fixed-variant: rgb(88 68 25);
+    --color-surface-dim: rgb(232 214 212);
+    --color-surface-bright: rgb(255 248 247);
+    --color-surface-container-lowest: rgb(255 255 255);
+    --color-surface-container-low: rgb(255 240 239);
+    --color-surface-container: rgb(252 234 232);
+    --color-surface-container-high: rgb(246 228 226);
+    --color-surface-container-highest: rgb(241 222 220);
 }
