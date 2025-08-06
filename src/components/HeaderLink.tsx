@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHashtag, faCheck } from "@fortawesome/free-solid-svg-icons";
-import React, { type ReactNode, useState } from 'react'
+import { useState } from 'react'
 import { useNavigate } from "react-router-dom";
 import BuiTooltip from "./BaseUI/BUI_Tooltip";
 import { Toast } from "@base-ui-components/react";
