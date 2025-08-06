@@ -20,7 +20,7 @@ export default function ContactCard({
 }) {
 	return (
 		<>
-			<div className='flex flex-col gap-3 items-center justify-center w-full h-fit mt-10 mb-10'>
+			<div className='flex flex-col gap-3 items-center justify-center w-full h-fit pt-10 mb-10'>
 				<img
 					src={headshot}
 					className='size-40 rounded-full'
@@ -35,14 +35,14 @@ export default function ContactCard({
 					</div> 
 					: ''
 				}
-				<div className='flex flex-row gap-3'>
+				<div className='flex flex-row gap-3 w-fit'>
 					{/* ICON BUTTONS */}
                     {socials.map(social => (
-                        <BuiTooltip key={social.key} text={social.text} color='on-surface' background='surface-container'>
-                            <a href={social.link} target='_blank'>
+                        <BuiTooltip tabstop={true} key={social.key} text={social.text} color='on-primary' background='primary'>
+                            <a href={social.link} target='_blank' >
                                 <FontAwesomeIcon
                                     icon={social.icon}
-                                    className='text-2xl text-on-surface'>
+                                    className='text-2xl text-on-surface w-fit h-fit'>
                                 </FontAwesomeIcon>
                             </a>
                         </BuiTooltip>
