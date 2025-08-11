@@ -2,8 +2,8 @@
 About the production process and lessons learned from Gorilla Tuesday's "In The Month of May" 
 Sam Neisewander
 music production
-08/08/2025
-08/08/2025
+08/11/2025
+08/11/2025
 
 ## Overview
 This was a cool project because it helped me to exercise all facets of producing a song: part writing, tracking, mixing, and mastering. This song was the second track I published ever, and the first that was published under my own name, so that was a pretty cool milestone as well. Here I will highlight a few things I learned throughout the process, sorted by stage in the production pipeline.
