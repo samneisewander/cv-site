@@ -62,13 +62,26 @@ const BlockQuoteComponent: Components["blockquote"] = ({ children }) => {
     )
 }
 
+const ParagraphComponent: Components['p'] = ({ children }) => {
+    let innerHTML = children as string
+    return (
+        <>
+            <p>{innerHTML}</p>
+            <br />
+            <br />
+        </>
+    )
+}
+
 const CodeComponent: Components["code"] = ({ className, children, ...props }) => {
     const match = /language-(\w+)/.exec(className || "");
     const lang = match && match[1];
     return match ? (<CodeBlock lang={lang || "text"} codeChildren={String(children)} />) : (
-        <code {...props} className="bg-surface-container-high md:bg-surface p-1 rounded-sm">{children}</code>
+        <code {...props} className="bg-surface-container-high text-tertiary md:bg-surface p-1 rounded-sm">{children}</code>
     )
 }
+
+
 
 export default function Blog({
     blogData
@@ -156,7 +169,8 @@ function Article({ blogData }: { blogData: BlogData }) {
         h5: H5Component,
         h6: H6Component,
         blockquote: BlockQuoteComponent,
-        code: CodeComponent
+        code: CodeComponent,
+        p: ParagraphComponent
     }
 
     return (
