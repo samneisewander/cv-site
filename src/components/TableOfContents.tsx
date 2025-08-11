@@ -10,7 +10,7 @@ interface Heading {
     items: Heading[]
 }
 
-export default function TableOfContents() {
+export default function TableOfContents({ className }: { className?: string }) {
     const [activeId, setActiveId] = useState<string>();
     const { nestedHeadings } = useHeadingsData();
     const navigate = useNavigate()
@@ -18,7 +18,7 @@ export default function TableOfContents() {
     useIntersectionObserver(setActiveId, activeId);
 
     return (
-        <nav aria-label="Table of contents" className="bg-surface-container p-5 rounded-md w-fit h-fit">
+        <nav aria-label="Table of contents" className={className}>
             <Headings headings={nestedHeadings} activeId={activeId} navigate={navigate} />
         </nav>
     );
@@ -30,7 +30,7 @@ const Headings = ({ headings, activeId, navigate }: { headings: Heading[], activ
             {headings.map((heading) => (
                 <li key={heading.id} className={heading.id === activeId ? "text-primary list-disc" : "text-on-surface list-circle"}>
                     <a
-                        href={`#${heading.id}`}
+                        href={window.location.origin + window.location.pathname + '#' + heading.id}
                         onClick={async (e) => {
                             e.preventDefault();
                             let element = document.querySelector(`#${heading.id}`)
@@ -38,7 +38,7 @@ const Headings = ({ headings, activeId, navigate }: { headings: Heading[], activ
                                 element.scrollIntoView({
                                     behavior: "smooth"
                                 });
-                                navigate('/#' + heading.id, { replace: true });
+                                navigate(window.location.pathname +  '#' + heading.id, { replace: true });
                             }
                         }}
                     >

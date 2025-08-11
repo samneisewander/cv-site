@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHashtag, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { useState } from 'react'
 import { useNavigate } from "react-router-dom";
-import BuiTooltip from "./BaseUI/BUI_Tooltip";
+import { BuiTooltip } from "./BaseUI";
 import { Toast } from "@base-ui-components/react";
 import ToastList from "./ToastList";
 
@@ -16,12 +16,14 @@ export default function HeaderLink(
     {
         children, 
         id, 
-        headingType 
+        headingType,
+        className
     }: 
     { 
         children: string, 
         id: string, 
-        headingType: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
+        headingType: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6',
+        className?: string
 }) {
 
     const [icon, setIcon] = useState(faHashtag)
@@ -33,8 +35,8 @@ export default function HeaderLink(
             title: `Section link copied!`,
             description: 'Visit this link to jump to this section.',
         });
-        await navigator.clipboard.writeText(window.location.origin + '/#' + id)
-        navigate('/#' + id, { replace: true });
+        await navigator.clipboard.writeText(window.location.origin + window.location.pathname + '#' + id)
+        navigate(window.location.pathname +  '#' + id, { replace: true });
 
         setIcon(faCheck)
     }
@@ -51,22 +53,22 @@ export default function HeaderLink(
 
     switch (headingType) {
         case 'h1':
-            headingElement = <h1 id={id}>{children}</h1>
+            headingElement = <h1 className={className} id={id}>{children}</h1>
             break;
         case 'h2':
-            headingElement = <h2 id={id}>{children}</h2>
+            headingElement = <h2 className={className} id={id}>{children}</h2>
             break;
         case 'h3':
-            headingElement = <h3 id={id}>{children}</h3>
+            headingElement = <h3 className={className} id={id}>{children}</h3>
             break;
         case 'h4':
-            headingElement = <h4 id={id}>{children}</h4>
+            headingElement = <h4 className={className} id={id}>{children}</h4>
             break;
         case 'h5':
-            headingElement = <h5 id={id}>{children}</h5>
+            headingElement = <h5 className={className} id={id}>{children}</h5>
             break;
         case 'h6':
-            headingElement = <h6 id={id}>{children}</h6>
+            headingElement = <h6 className={className} id={id}>{children}</h6>
             break;
     }
 
@@ -75,7 +77,7 @@ export default function HeaderLink(
             <div className="flex flex-row gap-5 items-center align-baseline group" onMouseLeave={mouseLeaveHandler}>
                 {headingElement}
                 <BuiTooltip tabstop={false} text='Copy link to section' side='top'>
-                    <FontAwesomeIcon onClick={clickHandler} icon={icon} className="text-xl \ text-transparent transition group-hover:text-on-surface focus:text-on-surface hover:cursor-pointer relative top-[2px]"></FontAwesomeIcon>
+                    <FontAwesomeIcon onClick={clickHandler} icon={icon} className="text-xl \ md:text-transparent transition group-hover:text-on-surface focus:text-on-surface hover:cursor-pointer relative top-[2px]" />
                 </BuiTooltip>
             </div>
             <Toast.Portal>

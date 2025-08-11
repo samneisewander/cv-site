@@ -8,68 +8,33 @@ import {
 	faInstagram,
 	faSpotify,
 	faGoodreads,
-	type IconDefinition
+	faGithub,
 } from '@fortawesome/free-brands-svg-icons'
 import {
-	faPalette,
-	faMoon,
-	faSun,
-	faCircleHalfStroke,
 	faEnvelope
 } from '@fortawesome/free-solid-svg-icons'
 
 // Import Components
-import BuiPopover from '../components/BaseUI/BUI_Popover'
-import M3IconButton from '../components/M3IconButton'
-import BuiTooltip from '../components/BaseUI/BUI_Tooltip'
+import { BuiAccordion, BuiTooltip } from '../components/BaseUI'
 import HeaderLink from '../components/HeaderLink'
-import BUI_Accordion from '../components/BaseUI/BUI_Accordion'
-import { HexColorPicker } from 'react-colorful'
 
 // Import Functions
-import { useState, useEffect } from 'react'
-import { updateTheme } from 'm3-palettes'
 import TableOfContents from '../components/TableOfContents'
+import { useBreakpointContext } from '@/components/BreakpointContext'
+import { Social } from '../types'
+import ThemeMenu from '../components/ThemeMenu'
+import { Link } from 'react-router-dom'
 
-type Social = {
-	icon: IconDefinition,
-	link: string,
-	text: string,
-	key: number
-}
+// window.innerWidth >= 768 ? 'left' : 'top'
 
 export default function Home() {
-	/* MATERIAL 3 COLOR */
-	const [color, setColor] = useState('#730f2d')
-	const [contrast, setContrast] = useState(0)
-	const [darkMode, setDarkMode] = useState(
-		window.matchMedia('(prefers-color-scheme: dark)').matches
-	)
-	const handleChangeComplete = (newColor: string) => {
-		setColor(newColor)
-		updateTheme(newColor, 'content', darkMode, contrast)
-	}
-	const handleDarkModeToggle = () => {
-		setDarkMode(!darkMode)
-		updateTheme(color, 'content', !darkMode, contrast)
-	}
-	const handleContrastToggle = (value: number) => {
-		setContrast(value)
-		updateTheme(color, 'content', darkMode, contrast)
-	}
-
-	// Initialize theme on page load
-	useEffect(() => {
-		updateTheme(color, 'content', darkMode, contrast)
-	}, [])
-
 	return (
-		<div className={darkMode ? 'dark' : 'light'}>
+		<>
 			<div className='bg-surface box-border text-on-surface p-5 md:p-10 flex flex-col md:grid md:grid-cols-[1fr_500px_1fr]'>
 				<div itemID='raceway' className='col-start-2'>
-					<div className='hidden lg:inline relative left-[-250px]'>
+					<div className='hidden lg:inline relative left-[-260px]'>
 						<div className='fixed md:h-screen flex justify-end items-center'>
-							<TableOfContents />
+							<TableOfContents className='bg-surface-container-highest p-5 rounded-md' />
 						</div>
 					</div>
 					<ContactCard
@@ -88,22 +53,28 @@ export default function Home() {
 								key: 2,
 							},
 							{
+								icon: faGithub,
+								text: 'Check out my Github!',
+								link: 'https://github.com/samneisewander',
+								key: 3,
+							},
+							{
 								icon: faSpotify,
 								text: 'Listen to my work on Spotify!',
 								link: 'https://open.spotify.com/artist/5rTV8krDOMdxZtbZqqNfGm',
-								key: 3,
+								key: 4,
 							},
 							{
 								icon: faGoodreads,
 								text: 'Friend me on Goodreads!',
 								link: 'https://www.goodreads.com/friend/i?invite_token=NzUzMzQzYzQtMjFkMS00OTc3LWFhN2ItNGNiYTEyMWY2NGE5',
-								key: 4,
+								key: 5,
 							},
 							{
 								icon: faEnvelope,
 								text: 'Contact me!',
 								link: 'mailto:samuelneisewander@gmail.com',
-								key: 5,
+								key: 6,
 							}
 						]}
 					/>
@@ -117,10 +88,15 @@ export default function Home() {
 
 				</div>
 
-				<Island handleChangeComplete={handleChangeComplete} handleContrastToggle={handleContrastToggle} handleDarkModeToggle={handleDarkModeToggle} darkMode={darkMode} color={color} />
+				<div className='bottom-10 w-[90%] pointer-events-none md:relative md:h-screen md:w-fit flex md:flex-col justify-center md:col-start-3 md:top-0 md:ml-10'>
+					<ThemeMenu vertical={true} side='left' className='bg-surface-container-highest fixed'></ThemeMenu>
+				</div>
 
 			</div>
-		</div>
+			{useBreakpointContext() == 'sm' && <div className="fixed w-full flex flex-row justify-center bottom-5">
+				<ThemeMenu vertical={false} side='top' className="bg-surface-container-highest" />
+			</div>}
+		</>
 	)
 }
 
@@ -149,7 +125,7 @@ function Classes() {
 				</p>
 			</div>
 
-			<BUI_Accordion header={<span>All Classes</span>} >
+			<BuiAccordion header={<span>All Classes</span>} >
 				<div className='flex flex-col gap-2 pb-5'>
 					<h4>Junior Fall</h4>
 					<ul>
@@ -206,7 +182,7 @@ function Classes() {
 					<h3>Fall</h3>
 					<h3>Spring</h3> */}
 				</div>
-			</BUI_Accordion>
+			</BuiAccordion>
 		</div>
 
 	)
@@ -259,69 +235,6 @@ function About() {
 	)
 }
 
-/**
- * Function responsible for drawing the right-hand island that contains color
- * theme controls and accessibility settings such as the level of contrast.
- *  
- * @returns A JSX Element containing the island portion of the page.
- */
-function Island({
-	handleChangeComplete,
-	handleContrastToggle,
-	handleDarkModeToggle,
-	darkMode,
-	color,
-}: {
-	handleChangeComplete: any,
-	handleContrastToggle: any,
-	handleDarkModeToggle: any,
-	darkMode: boolean,
-	color: string,
-}) {
-
-	return (
-		<div className='fixed box-border bottom-10 w-[90%] md:relative md:h-screen md:w-fit flex md:flex-col justify-center md:col-start-3 md:top-0 md:ml-10'>
-			<div
-				itemID='island'
-				className='bg-surface-container md:fixed w-fit h-fit rounded-full flex md:flex-col p-2 items-center justify-center gap-3'>
-				<BuiTooltip
-					color='on-primary'
-					background='primary'
-					text='Themes'
-					side='left'
-					tabstop={true}
-					offset={20}>
-					<BuiPopover icon={faPalette} side={window.innerWidth >= 768 ? 'left' : 'top'}>
-						<HexColorPicker onChange={handleChangeComplete} color={color} />
-					</BuiPopover>
-				</BuiTooltip>
-				<BuiTooltip
-					color='on-primary'
-					background='primary'
-					text='Toggle dark mode'
-					side='left'
-					tabstop={true}
-					offset={20}>
-					<M3IconButton
-						clickHandler={handleDarkModeToggle}
-						icon={darkMode ? faSun : faMoon}></M3IconButton>
-				</BuiTooltip>
-				<BuiTooltip
-					color='on-primary'
-					background='primary'
-					text='Toggle contrast level'
-					side='left'
-					tabstop={true}
-					offset={20}>
-					<M3IconButton
-						clickHandler={handleContrastToggle}
-						icon={faCircleHalfStroke}></M3IconButton>
-				</BuiTooltip>
-			</div>
-		</div>
-	)
-}
-
 function ContactCard({
 	headshot,
 	socials,
@@ -353,6 +266,7 @@ function ContactCard({
 						</BuiTooltip>
 					))}
 				</div>
+				<Link to="/blog">Read my blog →</Link>
 			</div>
 		</>
 	)
