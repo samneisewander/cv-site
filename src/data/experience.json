@@ -1,0 +1,44 @@
+[
+    {
+        "company": "Raynor Garage Doors",
+        "positions": [
+            {
+                "title": "Marketing Intern",
+                "location": "Dixon, IL",
+                "employmentType": "On-site",
+                "startDate": "6/1/2021",
+                "endDate": "7/1/2022",
+                "description": ""
+            },
+            {
+                "title": "Information Systems",
+                "location": "Dixon, IL",
+                "employmentType": "On-site",
+                "startDate": "7/1/2023",
+                "endDate": "8/1/2023",
+                "description": "As an Information Systems Intern, I worked closely with IS and Marketing leadership on several projects. I designed, developed, and deployed a registration website for the 2025 shareholder convention. I improved maintenance workflow efficiency and visibility by researching and implementing MS Power Apps in collaboration with Maintenance leadership. I collaborated with IS coworkers to execute an org-wide initiative to port user machine backups from an on-premises storage server to the cloud. I wrote and presented an assessment of generative AI tools to the executive team, highlighting their key strengths and weaknesses."
+            }
+        ]
+    },
+    {
+        "company": "iD Tech Camps",
+        "positions": [
+            {
+                "title": "Marketing Intern",
+                "location": "Dixon, IL",
+                "employmentType": "On-site",
+                "startDate": "6/1/2021",
+                "endDate": "7/1/2022",
+                "description": ""
+            },
+            {
+                "title": "Information Systems",
+                "location": "Dixon, IL",
+                "employmentType": "On-site",
+                "startDate": "7/1/2023",
+                "endDate": "8/1/2023",
+                "description": "As an Information Systems Intern, I worked closely with IS and Marketing leadership on several projects. I designed, developed, and deployed a registration website for the 2025 shareholder convention. I improved maintenance workflow efficiency and visibility by researching and implementing MS Power Apps in collaboration with Maintenance leadership. I collaborated with IS coworkers to execute an org-wide initiative to port user machine backups from an on-premises storage server to the cloud. I wrote and presented an assessment of generative AI tools to the executive team, highlighting their key strengths and weaknesses."
+            }
+        ]
+    }
+]

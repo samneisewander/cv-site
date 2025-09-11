@@ -55,8 +55,8 @@ const BlockQuoteComponent: Components["blockquote"] = ({ children }) => {
     let innerHTML = children as string
     return (
         <div className="rounded-md overflow-clip bg-surface-container-highest">
-            <blockquote className="p-4 my-4 border-s-4 border-primary">
-                <span className=" italic font-medium leading-relaxed text-primary">{innerHTML}</span>
+            <blockquote className="p-2 border-s-4 border-primary">
+                <div className="text-primary">{innerHTML}</div>
             </blockquote>
         </div>
     )
@@ -65,11 +65,7 @@ const BlockQuoteComponent: Components["blockquote"] = ({ children }) => {
 const ParagraphComponent: Components['p'] = ({ children }) => {
     let innerHTML = children as string
     return (
-        <>
-            <p>{innerHTML}</p>
-            <br />
-            <br />
-        </>
+        <p>{innerHTML}</p>
     )
 }
 
@@ -108,14 +104,11 @@ function DesktopLayout({
     blogData: BlogData
 }): ReactNode {
     return (
-        <div className="bg-surface h-screen flex p-5 justify-center">
-            <div className="bg-surface gap-2 grid md:grid-cols-[1fr_3fr] max-w-[1200px]">
-                <div className="rounded-md flex flex-col p-5 h-full bg-surface-container gap-5 items-center">
-                    {/* <M3ExtendedFab icon={faArrowLeft}>Go back</M3ExtendedFab> */}
+        <div className="bg-surface h-screen overflow-y-clip flex p-5 justify-center">
+            <div className="gap-2 grid md:grid-cols-[1fr_3fr] max-w-[1200px]">
+                <div className="rounded-md flex flex-col p-5 bg-surface-container gap-5 items-center">
                     <Link to='/blog' className="text-primary self-start">← Back to blogs</Link>
-                    <div className="h-full justify-end">
-                        <TableOfContents className="bg-surface-container-highest p-5 rounded-md h-fit" />
-                    </div>
+                    <TableOfContents className="max-h-[70vh] overflow-y-scroll"/>
                     <ThemeMenu vertical={false} side='top' className="bg-surface-container-highest"></ThemeMenu>
                 </div>
                 <Article blogData={blogData}></Article>
@@ -144,7 +137,7 @@ function MobileLayout({
                     {/* <M3ExtendedFab icon={faArrowLeft}>Go back</M3ExtendedFab> */}
                     <Link to='/blog' className="text-primary self-start">← Back to blogs</Link>
                     <div className="h-full justify-end">
-                        <TableOfContents className="bg-surface-container-highest p-5 rounded-md h-fit" />
+                        <TableOfContents className="max-h-[70vh] overflow-y-scroll" />
                     </div>
                     <div className="flex flex-row items-center justify-between w-full">
                         <span className="w-[56px]"></span>
@@ -174,7 +167,7 @@ function Article({ blogData }: { blogData: BlogData }) {
     }
 
     return (
-        <div className="md:bg-surface-container rounded-md p-5 text-on-surface flex flex-col overflow-y-scroll">
+        <div className="md:bg-surface-container rounded-md p-5 text-on-surface flex flex-col  overflow-y-scroll">
             <div className="bg-surface-container-highest flex flex-col gap-2 rounded-md p-5">
                 <h1 id="title" className="m-0">{blogData.title}</h1>
                 <div className="flex flex-row gap-2">
@@ -192,7 +185,7 @@ function Article({ blogData }: { blogData: BlogData }) {
                     })}
                 </div>
             </div>
-            <div className="p-5">
+            <div className="flex flex-col gap-3 p-5">
                 <Markdown components={mdComponentMap}>{blogData.data}</Markdown>
             </div>
         </div>

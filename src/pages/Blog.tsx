@@ -23,13 +23,14 @@ export default function Blog(): ReactNode {
 
 function DesktopLayout(): ReactNode {
     return (
-        <div className="bg-surface h-screen flex p-5 justify-center">
-            <div className="bg-surface gap-2 grid grid-cols-[1fr_3fr] max-w-[1200px]">
-                <NavDrawer></NavDrawer>
-                <div className="bg-surface-container rounded-md p-5 text-on-surface flex flex-col gap-5 overflow-y-scroll">
-                    {blogData.map((blog, index) => <BlogCard key={index} blogData={blog} />)}
-                </div>
-            </div >
+        <div className="bg-surface min-h-screen flex p-5 justify-center md:grid md:grid-cols-[1fr_3fr_1fr]">
+            <div className="col-start-2 max-w-[1000px] flex flex-col gap-2">
+                <Link to='/' className="text-primary self-start">← Back to home</Link>
+                {blogData.map((blog, index) => <BlogCard key={index} blogData={blog} />)}
+            </div>
+            <div className='bottom-10 w-[90%] pointer-events-none md:relative md:h-screen md:w-fit flex md:flex-col justify-center md:col-start-3 md:top-0 md:ml-10'>
+                <ThemeMenu vertical={true} side='left' className='bg-surface-container-highest fixed'></ThemeMenu>
+            </div>
         </div>
     )
 }
@@ -48,21 +49,10 @@ function MobileLayout(): ReactNode {
     )
 }
 
-function NavDrawer() {
-    return (
-        <div className="rounded-md flex flex-col p-5 bg-surface-container gap-5 justify-between items-center">
-
-            {/* <M3ExtendedFab icon={faArrowLeft}>Go back</M3ExtendedFab> */}
-            <Link to='/' className="text-primary self-start">← Back to home</Link>
-            <ThemeMenu vertical={false} side='top' className="bg-surface-container-high"></ThemeMenu>
-        </div>
-    )
-}
-
 function BlogCard({ blogData }: { blogData: BlogData }) {
     return (
-        <div className="rounded-md bg-surface-container-high max-h-[500px]">
-            <div className="bg-surface-container-highest flex flex-col gap-2 rounded-md p-5">
+        <div className="rounded-md max-h-[500px]">
+            <div className="bg-surface-container-highest text-on-surface flex flex-col gap-2 rounded-md p-5">
                 <Link to={blogData.shortTitle}><h1 id="title" className="m-0">{blogData.title}</h1></Link>
 
                 <div className="flex flex-row gap-2">

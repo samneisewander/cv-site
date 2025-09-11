@@ -42,7 +42,7 @@ export default function App() {
 			<ThemeProvider initialTheme={initialTheme}>
 				<Tooltip.Provider>
 					<Toast.Provider>
-						<div className={initialTheme.darkMode ? 'dark' : 'light'}>
+						<div className={`${initialTheme.darkMode ? 'dark' : 'light'}`}>
 							<Routes>
 								<Route path="/" element={<Home />} />
 								<Route path="/emma" element={<Emma />} />

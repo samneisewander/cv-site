@@ -27,8 +27,8 @@ export default function TableOfContents({ className }: { className?: string }) {
 const Headings = ({ headings, activeId, navigate }: { headings: Heading[], activeId: string | undefined, navigate: NavigateFunction }) => {
     return (
         <ul>
-            {headings.map((heading) => (
-                <li key={heading.id} className={heading.id === activeId ? "text-primary list-disc" : "text-on-surface list-circle"}>
+            {headings.map((heading, idx) => (
+                <li key={idx} className={heading.id === activeId ? "text-primary list-disc" : "text-on-surface list-circle"}>
                     <a
                         href={window.location.origin + window.location.pathname + '#' + heading.id}
                         onClick={async (e) => {
