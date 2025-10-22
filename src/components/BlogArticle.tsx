@@ -1,83 +1,41 @@
-import { type BlogData } from "../types"
-import TableOfContents from "./TableOfContents"
 import ThemeMenu from "./ThemeMenu"
-import { Link } from "react-router-dom"
 import HeaderLink from "./HeaderLink"
-import { ReactNode } from "react";
-import Markdown, { type Components } from "react-markdown"
-import CodeBlock from "./CodeBlock"
+
+import { type BlogData } from "../types"
 import { useBreakpointContext } from "./BreakpointContext"
-import M3IconButton from "./M3IconButton"
-import { faBars } from "@fortawesome/free-solid-svg-icons"
-import { useState } from "react"
 
-function urlStringifyHeading(text: string): string {
-    return text.toLowerCase().replace(/[^A-z0-9 ]/g, "").replace(/ /g, "-")
-}
+import { ReactNode } from "react"
+import { Link } from "react-router-dom"
+import { type Components, MarkdownHooks } from "react-markdown"
 
-const H1Component: Components["h1"] = ({ children }) => {
-    let innerHTML = children as string
-    return (
-        <HeaderLink headingType="h1" id={urlStringifyHeading(innerHTML)}>{innerHTML}</HeaderLink>
-    )
-}
-const H2Component: Components["h2"] = ({ children }) => {
-    let innerHTML = children as string
-    return (
-        <HeaderLink headingType="h2" id={urlStringifyHeading(innerHTML)}>{innerHTML}</HeaderLink>
-    )
-}
-const H3Component: Components["h3"] = ({ children }) => {
-    let innerHTML = children as string
-    return (
-        <HeaderLink headingType="h3" id={urlStringifyHeading(innerHTML)}>{innerHTML}</HeaderLink>
-    )
-}
-const H4Component: Components["h4"] = ({ children }) => {
-    let innerHTML = children as string
-    return (
-        <HeaderLink headingType="h4" id={urlStringifyHeading(innerHTML)}>{innerHTML}</HeaderLink>
-    )
-}
-const H5Component: Components["h5"] = ({ children }) => {
-    let innerHTML = children as string
-    return (
-        <HeaderLink headingType="h5" id={urlStringifyHeading(innerHTML)}>{innerHTML}</HeaderLink>
-    )
-}
-const H6Component: Components["h6"] = ({ children }) => {
-    let innerHTML = children as string
-    return (
-        <HeaderLink headingType="h6" id={urlStringifyHeading(innerHTML)}>{innerHTML}</HeaderLink>
-    )
-}
-const BlockQuoteComponent: Components["blockquote"] = ({ children }) => {
-    let innerHTML = children as string
-    return (
-        <div className="rounded-md overflow-clip bg-surface-container-highest">
-            <blockquote className="p-2 border-s-4 border-primary">
-                <div className="text-primary">{innerHTML}</div>
-            </blockquote>
-        </div>
-    )
+import rehypeStarryNight from 'rehype-starry-night'
+
+function urlStringifyHeading(text: string | undefined): string {
+    if (text) {
+        return text.toLowerCase().replace(/[^A-z0-9 ]/g, "").replace(/ /g, "-")
+    } else {
+        console.warn("urlStringifyHeading: cannot stringify undefined")
+        return ""
+    }
 }
 
-const ParagraphComponent: Components['p'] = ({ children }) => {
-    let innerHTML = children as string
-    return (
-        <p>{innerHTML}</p>
-    )
+/**
+ * TODO: Find a way to reconcile urlStringifyHeading with Markdown formatting.
+ * Example: ## This is a heading with a **bolded** word in it
+ * Expected Behavior: The world bolded should appear boldface and the url should not be affected
+ * Actual Behavior: error, because innerHTML is not a string in this case.
+ */
+
+const HeaderComponent: Components["h1"] = ({ node, ...props }) => {
+    if (node && node.children[0].type == "text") {
+        let innerHTML = node.children[0].value
+        return (
+            <HeaderLink headingType={node?.tagName.toLowerCase()} id={urlStringifyHeading(innerHTML)} {...props}>{innerHTML}</HeaderLink>
+        )
+    } else {
+        console.warn(`HeaderComponent: cannot create header component from node: ${node}`)
+    }
 }
-
-const CodeComponent: Components["code"] = ({ className, children, ...props }) => {
-    const match = /language-(\w+)/.exec(className || "");
-    const lang = match && match[1];
-    return match ? (<CodeBlock lang={lang || "text"} codeChildren={String(children)} />) : (
-        <code {...props} className="bg-surface-container-high text-tertiary md:bg-surface p-1 rounded-sm">{children}</code>
-    )
-}
-
-
 
 export default function Blog({
     blogData
@@ -91,8 +49,8 @@ export default function Blog({
         case '2xl':
         case 'xl':
         case 'lg':
-        case 'md':
             return <DesktopLayout blogData={blogData} />
+        case 'md':
         case 'sm':
             return <MobileLayout blogData={blogData} />
     }
@@ -104,16 +62,15 @@ function DesktopLayout({
     blogData: BlogData
 }): ReactNode {
     return (
-        <div className="bg-surface h-screen overflow-y-clip flex p-5 justify-center">
-            <div className="gap-2 grid md:grid-cols-[1fr_3fr] max-w-[1200px]">
-                <div className="rounded-md flex flex-col p-5 bg-surface-container gap-5 items-center">
-                    <Link to='/blog' className="text-primary self-start">← Back to blogs</Link>
-                    <TableOfContents className="max-h-[70vh] overflow-y-scroll"/>
-                    <ThemeMenu vertical={false} side='top' className="bg-surface-container-highest"></ThemeMenu>
-                </div>
+        <div className='bg-surface box-border text-on-surface p-10 grid grid-cols-[1fr_2fr_1fr]'>
+            <div className="flex flex-col gap-2 col-start-2">
+                <Link to='/blog' className="text-primary self-start">← Back to blogs</Link>
                 <Article blogData={blogData}></Article>
-            </div >
-        </div >
+            </div>
+            <div className='bottom-10 pointer-events-none relative h-screen w-fit flex flex-col justify-center col-start-3 top-0 ml-10'>
+                <ThemeMenu vertical={true} side='left' className='bg-surface-container-highest fixed'></ThemeMenu>
+            </div>
+        </div>
     )
 }
 
@@ -123,57 +80,75 @@ function MobileLayout({
     blogData: BlogData
 }): ReactNode {
 
-    const [navOpen, setNavOpen] = useState(false)
-
     return (
         <div className="bg-surface pt-5">
             <Link to='/blog' className="text-primary self-start m-5 mb-0">← Back to blogs</Link>
             <Article blogData={blogData}></Article>
-            <div className="fixed bottom-5 left-5 rounded-full bg-surface-container-highest p-2">
-                <M3IconButton icon={faBars} clickHandler={() => setNavOpen(!navOpen)} />
+            <div className="w-full fixed bottom-5 flex justify-center pointer-events-none">
+                <ThemeMenu vertical={false} side='top' className="bg-surface-container-highest"></ThemeMenu>
             </div>
-            {navOpen && <div className="fixed top-0 h-screen w-[80%]">
-                <div className="rounded-r-xl flex flex-col p-5 h-full bg-surface-container gap-5 items-center">
-                    {/* <M3ExtendedFab icon={faArrowLeft}>Go back</M3ExtendedFab> */}
-                    <Link to='/blog' className="text-primary self-start">← Back to blogs</Link>
-                    <div className="h-full justify-end">
-                        <TableOfContents className="max-h-[70vh] overflow-y-scroll" />
-                    </div>
-                    <div className="flex flex-row items-center justify-between w-full">
-                        <span className="w-[56px]"></span>
-                        <ThemeMenu vertical={false} side='top' className="bg-surface-container-highest"></ThemeMenu>
-                        <div className="rounded-full bg-surface-container-highest p-2">
-                            <M3IconButton icon={faBars} clickHandler={() => setNavOpen(!navOpen)} />
-                        </div>
-                    </div>
-                </div>
-            </div>}
+            <br/>
+            <br/>
+            <br/>
         </div >
     )
 }
 
 function Article({ blogData }: { blogData: BlogData }) {
 
+    // https://github.com/remarkjs/react-markdown?tab=readme-ov-file#appendix-b-components
     const mdComponentMap: Components = {
-        h1: H1Component,
-        h2: H2Component,
-        h3: H3Component,
-        h4: H4Component,
-        h5: H5Component,
-        h6: H6Component,
-        blockquote: BlockQuoteComponent,
-        code: CodeComponent,
-        p: ParagraphComponent
+        h1: HeaderComponent,
+        h2: HeaderComponent,
+        h3: HeaderComponent,
+        h4: HeaderComponent,
+        h5: HeaderComponent,
+        h6: HeaderComponent,
+        code({ node, children, ...props }) {
+            if (props?.className) {
+                return (
+                    <div className="rounded-md bg-gray-900 p-2 w-full overflow-x-auto scrollbar-thin scrollbar-track-gray-900 scrollbar-thumb-gray-500">
+                        <code {...props} className="text-sm">
+                            {children}
+                        </code>
+                    </div>
+                )
+            } else {
+                return (
+                    <span className="rounded-md bg-gray-900 pl-1 pr-1">
+                        <code {...props} className="text-sm">
+                            {children}
+                        </code>
+                    </span>
+                )
+            }
+        },
+        blockquote({ node, children, ...props }) {
+            return (
+                <div className="rounded-md overflow-clip bg-surface-container">
+                    <blockquote className="p-2 border-s-4 border-primary" {...props}>
+                        {children}
+                    </blockquote>
+                </div>
+            )
+        },
+        img({ node, src, alt, title, ...props }) {
+            return (
+                <span className="flex flex-row justify-center"><img src={src} title={title} alt={alt} {...props}></img></span>
+            )
+        }
     }
 
     return (
-        <div className="md:bg-surface-container rounded-md p-5 text-on-surface flex flex-col  overflow-y-scroll">
-            <div className="bg-surface-container-highest flex flex-col gap-2 rounded-md p-5">
+        <div className="rounded-md p-5 text-on-surface flex flex-col overflow-y-auto scrollbar scrollbar-track-gray-900 scrollbar-thumb-gray-500">
+            <div className="flex flex-col gap-2 rounded-md p-5">
                 <h1 id="title" className="m-0">{blogData.title}</h1>
-                <div className="flex flex-row gap-2">
-                    <p className="">Author{blogData.authors.length > 1 && 's'}: {blogData.authors.join(', ')}</p>
-                    <p className="">Published: {blogData.datePublished}</p>
-                    <p className="">Modified: {blogData.dateModified}</p>
+                <div className="flex flex-col gap-2">
+                    <p className="">Written by {blogData.authors.join(', ')}</p>
+                    <div className="flex flex-row gap-2">
+                        <p className=""><b>Published</b> {blogData.datePublished}</p>
+                        <p className=""><b>Modified</b> {blogData.dateModified}</p>
+                    </div>
                 </div>
                 <div className="flex flex-row gap-2">
                     {blogData.tags.map((tag, index) => {
@@ -186,7 +161,7 @@ function Article({ blogData }: { blogData: BlogData }) {
                 </div>
             </div>
             <div className="flex flex-col gap-3 p-5">
-                <Markdown components={mdComponentMap}>{blogData.data}</Markdown>
+                <MarkdownHooks rehypePlugins={[rehypeStarryNight]} components={mdComponentMap}>{blogData.data}</MarkdownHooks>
             </div>
         </div>
     )

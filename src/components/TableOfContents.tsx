@@ -1,3 +1,15 @@
+/**
+ * This component is intended to generate a nested list of hyperlinks to each heading in an article.
+ * The current implementation walks the DOM and looks for heading elements, organizing them into a
+ * tree data structure. However, walking the DOM is not very idiomatic in React. Instead, this
+ * component should be supplied with the relevant heading elements, and re-render upon changes.
+ * 
+ * The current implementation is not compatible with the syntax highlighter plugin in react-markdown, so I'm
+ * removing it.
+ * 
+ * TODO: Make the parent push state to this component, instead of this component pulling state from the DOM.
+ */
+
 import { useEffect, useState, useRef } from "react";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 
@@ -99,6 +111,7 @@ const getNestedHeadings = (headingElements: HTMLHeadingElement[]): Heading[] => 
     }
 
     for (let heading of headingElements) {
+        console.log(heading)
         let tag: HeadingTag
         switch (heading.tagName) {
             case 'H1':

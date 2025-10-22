@@ -22,7 +22,7 @@ export default function HeaderLink(
     { 
         children: string, 
         id: string, 
-        headingType: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6',
+        headingType: string | undefined,
         className?: string
 }) {
 
@@ -70,6 +70,9 @@ export default function HeaderLink(
         case 'h6':
             headingElement = <h6 className={className} id={id}>{children}</h6>
             break;
+        default:
+            console.warn("HeaderLink received an unknown heading tag.")
+            headingElement = <h1 className={className} id={id}>{children}</h1>
     }
 
     return (

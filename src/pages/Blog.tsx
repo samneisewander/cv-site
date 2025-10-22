@@ -23,8 +23,8 @@ export default function Blog(): ReactNode {
 
 function DesktopLayout(): ReactNode {
     return (
-        <div className="bg-surface min-h-screen flex p-5 justify-center md:grid md:grid-cols-[1fr_3fr_1fr]">
-            <div className="col-start-2 max-w-[1000px] flex flex-col gap-2">
+        <div className="bg-surface min-h-screen p-5 grid grid-cols-[1fr_2fr_1fr]">
+            <div className="col-start-2 flex flex-col gap-2">
                 <Link to='/' className="text-primary self-start">← Back to home</Link>
                 {blogData.map((blog, index) => <BlogCard key={index} blogData={blog} />)}
             </div>
@@ -37,10 +37,10 @@ function DesktopLayout(): ReactNode {
 
 function MobileLayout(): ReactNode {
     return (
-        <div className="bg-surface gap-2 h-screen pt-5">
+        <div className="bg-surface gap-2 min-h-screen pt-5">
             <Link to='/' className="text-primary self-start p-5">← Back to home</Link>
             <div className="bg-surface rounded-md p-5 text-on-surface flex flex-col gap-5 overflow-y-scroll">
-                {blogData.map((blog, index) => <BlogCard key={index} blogData={blog} />)}
+                {blogData.map((blog) => <BlogCard key={blog.id} blogData={blog} />)}
             </div>
             <div className="fixed w-full flex flex-row justify-center bottom-5">
                 <ThemeMenu vertical={false} side='top' className="bg-surface-container-highest" />
@@ -52,7 +52,7 @@ function MobileLayout(): ReactNode {
 function BlogCard({ blogData }: { blogData: BlogData }) {
     return (
         <div className="rounded-md max-h-[500px]">
-            <div className="bg-surface-container-highest text-on-surface flex flex-col gap-2 rounded-md p-5">
+            <div className="bg-surface-container text-on-surface flex flex-col gap-2 rounded-md p-5">
                 <Link to={blogData.shortTitle}><h1 id="title" className="m-0">{blogData.title}</h1></Link>
 
                 <div className="flex flex-row gap-2">

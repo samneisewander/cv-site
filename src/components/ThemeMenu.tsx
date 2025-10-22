@@ -6,7 +6,7 @@ import M3IconButton from "./M3IconButton"
 import { Slider } from "@base-ui-components/react"
 
 /**
- * Function responsible for drawing the right-hand island that contains color
+ * Function responsible for drawing the island that contains color
  * theme controls and accessibility settings such as the level of contrast.
  *  
  * @returns A JSX Element containing the island portion of the page.
