@@ -39,7 +39,7 @@ Finally, start Saichat:
 ```bash
 ./saichat
 ```
-You you run into dependency problems, install the appropriate libraries using your distribution's package manager. (You can figure it out! You got this!)
+If you run into dependency problems, install the appropriate libraries using your distribution's package manager. (You can figure it out! You got this!)
 
 Once the application is running, type in the address of the host running the server (this would be `localhost` if you are running `mq_server.py` per the instructions above), the port (likewise, this is `9005` if you followed the instructions above), and a username. Then, try sending the message "egg" to the server! This is the beginning of the puzzle.
 
@@ -65,7 +65,7 @@ The color of this pixel is determined by its *red*, *blue*, and *green* color ch
 
 So I could have a pixel with components `(r: 55, g: 2, b: 128)`, and that looks like this:
 
-![compositing a pixel from components](/assets/figure0.webp)
+![compositing a pixel from components](/blogImages/saichat-writeup/figure0.webp)
 
 Could I have a pixel with components `(r: 1000000, g: 543, b: 894)`? Well, it kinda depends.
 

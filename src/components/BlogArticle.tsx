@@ -104,6 +104,10 @@ function Article({ blogData }: { blogData: BlogData }) {
         h4: HeaderComponent,
         h5: HeaderComponent,
         h6: HeaderComponent,
+        /**
+         * TODO:    - Add a copy button to code blocks, restrict ctrl-a to code blocks.
+         *          - Make the highlighter be gruvbox theme goddamit
+         */
         code({ node, children, ...props }) {
             if (props?.className) {
                 return (
