@@ -2,8 +2,8 @@ Saichat CTF Writeup
 A guide explaining how to complete the CTF challenge hidden within Saichat.
 Sam Neisewander
 ctf, steganography
-10/17/2025
-10/17/2025
+10/21/2025
+10/21/2025
 
 ## A quick Q/A
 
