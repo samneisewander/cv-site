@@ -112,7 +112,7 @@ function Article({ blogData }: { blogData: BlogData }) {
             if (props?.className) {
                 return (
                     <div className="rounded-md bg-gray-900 p-2 w-full overflow-x-auto scrollbar-thin scrollbar-track-gray-900 scrollbar-thumb-gray-500">
-                        <code {...props} className="text-sm">
+                        <code {...props} className="text-sm text-prettylights-syntax-storage-modifier-import">
                             {children}
                         </code>
                     </div>
@@ -120,7 +120,7 @@ function Article({ blogData }: { blogData: BlogData }) {
             } else {
                 return (
                     <span className="rounded-md bg-gray-900 pl-1 pr-1">
-                        <code {...props} className="text-sm">
+                        <code {...props} className="text-sm text-prettylights-syntax-keyword">
                             {children}
                         </code>
                     </span>
